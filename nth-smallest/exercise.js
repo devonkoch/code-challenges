@@ -42,7 +42,8 @@ BinarySearchTree.prototype.insert = function(value) {
 };
 
 BinarySearchTree.prototype.findTheNthSmallestNumber = function (nth) {
-	var result = [];
+  var count = 0;
+  var value;
 
 	if (nth < 0 || nth > this.size) {
 		return 'Exception';
@@ -52,15 +53,21 @@ BinarySearchTree.prototype.findTheNthSmallestNumber = function (nth) {
 		if (currentNode === null) { return; }
 		
 		traverse(currentNode.leftChild);
-		result.push(currentNode.value);
 		
-		if(result.length === nth) { return; }
-		
+		if(count < nth) {
+			value = currentNode.value;
+			count += 1;
+			if(count === nth) { return; }
+		}
+
 		traverse(currentNode.rightChild);
+		
 	}
 
 	traverse(this.root);
-	return result[nth - 1];
+
+	return value;
+
 };
 
 
