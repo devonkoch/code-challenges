@@ -50,9 +50,12 @@ BinarySearchTree.prototype.findTheNthSmallestNumber = function (nth) {
 
 	function traverse(currentNode) {
 		if (currentNode === null) { return; }
+		
 		traverse(currentNode.leftChild);
 		result.push(currentNode.value);
+		
 		if(result.length === nth) { return; }
+		
 		traverse(currentNode.rightChild);
 	}
 
